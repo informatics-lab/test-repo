@@ -16,6 +16,7 @@
     <script src="extras/libs/stats.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="view3d.css" rel="stylesheet">
     <!-- link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" -->
     <!-- <script src="water-material.js"></script> -->
@@ -23,7 +24,36 @@
 
   </head>
   <body ng-app="viewer">
-
+      <div id="forward" class="btn" style="position: absolute;
+                                           right:2%; bottom:50%;
+                                           text-align: center">
+        <i class="fa fa-arrow-circle-o-up fa-5x"></i><br>forward
+      </div>
+      <script>
+        document.getElementById("forward").addEventListener("touchstart", function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          VIEW3D.controls.forwardMovement = true;
+        })
+        document.getElementById("forward").addEventListener("touchend", function(event){
+          VIEW3D.controls.forwardMovement = false;
+        })
+      </script>
+      <div id="backward" class="btn" href="#" style="position: absolute;
+                                                     left: 2%; bottom:50%;
+                                                     text-alight: center">
+        <i class="fa fa-arrow-circle-o-down fa-5x"></i><br>backward
+      </div>
+      <script>
+        document.getElementById("backward").addEventListener("touchstart", function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          VIEW3D.controls.backwardMovement = true;
+        })
+        document.getElementById("backward").addEventListener("touchend", function(event){
+          VIEW3D.controls.backwardMovement = false;
+        })
+      </script>
   <div>
    <img src="https://dl.dropboxusercontent.com/u/2665124/volume_rendering_data/prototype.png" style="max-width: 15%; height: auto; position: absolute; bottom:1%; left: 1%">
 </div>
@@ -107,9 +137,10 @@ void main() {
 
 
     </script>
+
    <div ng-controller="MainController">
     <!-- <div ng-style="overlayStyle" class="overlay"></div> -->
-    <div style="display:none;" ng-style="modalStyle" class="modal" ng-mouseenter="controlsActive(false)" ng-mouseleave="controlsActive(true)">
+    <div style="display:none;" ng-style="modalStyle" class="modal ng-hide" ng-mouseenter="controlsActive(false)" ng-mouseleave="controlsActive(true)">
       <div id="info">
         <button ng-click="rebuildWx()">reload wx</button><br>
 	<select ng-model="bboxChoice" ng-options="key for (key,value) in bboxes">

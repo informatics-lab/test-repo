@@ -37,7 +37,7 @@ var VIEW3D = {
 	this.renderer.setClearColor( 0x6666ff, 1);
 
 	this.controls = new DeviceOrientationController( this.camera, this.renderer.domElement );
-  this.controls.connect();
+    this.controls.connect();
 	this.controls.addEventListener( 'change', function(){VIEW3D.fps=30;});
 
 	this.directionalLight = new THREE.DirectionalLight(0xffffdd, 1);
@@ -130,9 +130,11 @@ var VIEW3D = {
       this.now = Date.now();
       this.delta = this.now - this.then;
       this.then = this.now;
-      if (this.controls.forwardMovement) {
-        console.log("aaaaah");
+      if (this.controls.forwardMovement & !this.controls.backwardMovement) {
         VIEW3D.camera.translateZ(- this.delta * 0.1);
+      }
+      if (this.controls.backwardMovement & !this.controls.forwardMovement) {
+        VIEW3D.camera.translateZ(+ this.delta * 0.1);
       }
       this.camera_position = VIEW3D.camera.position;
 	    this.controls.update();
