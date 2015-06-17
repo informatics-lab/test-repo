@@ -9,9 +9,9 @@ angular.module('viewer', ["informatics-badge-directive"]).controller("MainContro
 
   $scope.position = null; // camera position
 
-  $scope.cld_low = "../data/cld_low.bin";
-  $scope.cld_med = "../data/cld_med.bin";
-  $scope.cld_hig = "../data/cld_hig.bin";
+  $scope.cld_low = "data/cld_low.bin";
+  $scope.cld_med = "data/cld_med.bin";
+  $scope.cld_hig = "data/cld_hig.bin";
 
 
   $scope.bboxes = {"UK":"-12,50,3.5,59", "Exeter":"-4.93266,49.31965,-2.12066,52.13165"};
@@ -315,7 +315,7 @@ angular.module('viewer', ["informatics-badge-directive"]).controller("MainContro
       $scope.buildLand( $scope.demdata );
     }else{
       //$http.get($scope.demProviderUrl, {params:requestParams, responseType: "arraybuffer"}  ).
-      $http.get('../data/dem.bin', {responseType: "arraybuffer"}).
+      $http.get('data/dem.bin', {responseType: "arraybuffer"}).
       success(function(data, status, headers, config) {
         $scope.demdata = Array.prototype.slice.call(new Int16Array(data));
         localStorage[storageName] = JSON.stringify($scope.demdata);
