@@ -457,8 +457,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 		window.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
 		this.element.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		this.element.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
-		this.element.addEventListener( 'touchend', this.onDocumentTouchEnd, false );
+		//this.element.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		//this.element.addEventListener( 'touchend', this.onDocumentTouchEnd, false );
 
 		this.freeze = false;
 	};
@@ -473,8 +473,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 		window.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-		this.element.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		this.element.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		//this.element.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		//this.element.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
 	};
 
 };

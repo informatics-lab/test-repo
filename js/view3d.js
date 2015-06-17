@@ -97,6 +97,15 @@ var VIEW3D = {
     this.camera_position = VIEW3D.camera.position;
     this.controls.update();
     this.display();
+    if (sendPosition) {
+      socket.emit('send camera', {
+        room: roomId,
+        message: {
+          position: VIEW3D.camera.position,
+          quaternion: VIEW3D.camera.quaternion
+        }
+      });
+    }
   },
 
   resize: function resize(inWidth, inHeight) {
