@@ -27,6 +27,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 	this.screenOrientation = window.orientation || 0;
 
 	this.forwardMovement = false;
+	this.backwardMovement = false;
 
 	// Manual rotate override components
 	var startX = 0, startY = 0,
@@ -236,15 +237,15 @@ var DeviceOrientationController = function ( object, domElement ) {
 	// 	}
 	// }.bind( this );
 
-	this.onDocumentTouchStart = function ( event ) {
-		event.preventDefault();
-		event.stopPropagation();
-		VIEW3D.controls.forwardMovement = true;
-	}
+	// this.onDocumentTouchStart = function ( event ) {
+	// 	event.preventDefault();
+	// 	event.stopPropagation();
+	// 	VIEW3D.controls.forwardMovement = true;
+	// }
 
-	this.onDocumentTouchEnd = function ( event ) {
-		VIEW3D.controls.forwardMovement = false;
-	}
+	// this.onDocumentTouchEnd = function ( event ) {
+	// 	VIEW3D.controls.forwardMovement = false;
+	// }
 
 	var createQuaternion = function () {
 
