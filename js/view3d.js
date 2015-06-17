@@ -86,12 +86,14 @@ var VIEW3D = {
     this.now = Date.now();
     this.delta = this.now - this.then;
     this.then = this.now;
+    
     if (this.controls.forwardMovement & !this.controls.backwardMovement) {
-      VIEW3D.camera.translateZ(- this.delta * 0.1);
+      VIEW3D.camera.translateZ(- this.delta * Math.max(VIEW3D.camera_position.y*5e-4, 5e-2));
     }
     if (this.controls.backwardMovement & !this.controls.forwardMovement) {
-      VIEW3D.camera.translateZ(+ this.delta * 0.1);
+      VIEW3D.camera.translateZ(+ this.delta * Math.max(VIEW3D.camera_position.y*5e-4, 5e-2));
     }
+    VIEW3D.camera.position.y = Math.max(VIEW3D.camera.position.y, 2)
     this.camera_position = VIEW3D.camera.position;
     this.controls.update();
     this.display();
