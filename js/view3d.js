@@ -97,7 +97,7 @@ var VIEW3D = {
     this.camera_position = VIEW3D.camera.position;
     this.controls.update();
     this.display();
-    if (sendPosition) {
+    if (connectedToRoom && isMobile) {
       socket.emit('send camera', {
         room: roomId,
         message: {

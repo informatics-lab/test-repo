@@ -66,3 +66,10 @@ body {
   bottom:10%;
   text-alight: center;
 }
+
+.hud #socket-id {
+  position: absolute;
+  right: 2%;
+  bottom:1%;
+  text-alight: center;
+}
