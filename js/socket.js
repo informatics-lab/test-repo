@@ -1,5 +1,5 @@
 // Connect to server
-var socket = io.connect("http://52.17.52.217:3000");
+var socket = io.connect("http://sync.3dvis.informaticslab.co.uk/");
 var roomId = null;
 var connectedToRoom = false;
 var isMobile = false;
