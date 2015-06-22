@@ -86,7 +86,7 @@ var VIEW3D = {
     this.now = Date.now();
     this.delta = this.now - this.then;
     this.then = this.now;
-    
+
     if (this.controls.forwardMovement & !this.controls.backwardMovement) {
       VIEW3D.camera.translateZ(- this.delta * Math.max(VIEW3D.camera_position.y*5e-4, 5e-2));
     }
@@ -97,6 +97,15 @@ var VIEW3D = {
     this.camera_position = VIEW3D.camera.position;
     this.controls.update();
     this.display();
+    if (connectedToRoom && isMobile) {
+      socket.emit('send camera', {
+        room: roomId,
+        message: {
+          position: VIEW3D.camera.position,
+          quaternion: VIEW3D.camera.quaternion
+        }
+      });
+    }
   },
 
   resize: function resize(inWidth, inHeight) {
