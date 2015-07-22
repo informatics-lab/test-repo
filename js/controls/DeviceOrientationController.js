@@ -11,6 +11,14 @@
  *
 **/
 
+var usenewcontrols = false;
+var turnspeed = 0.01;
+
+function togglecontrols(){
+	usenewcontrols = !usenewcontrols;
+	console.log(usenewcontrols);
+}
+
 var DeviceOrientationController = function ( object, domElement ) {
 
 	this.object = object;
@@ -401,25 +409,38 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 	}();
 
-	this.updateDeviceMove = function () {
+	this.updateDeviceMove = function (delta) {
 
 		var alpha, beta, gamma, orient;
 
 		var deviceMatrix;
+		
+		function alphaFromRot (deviceRotation, camera, delta, turnspeed) {
+			var camRot = camera.getWorldRotation();
+			var deltaRot = - (turnspeed * (deviceRotation || 0) * delta);
+			console.log(turnspeed);
+			console.log(deviceRotation);
+			console.log(delta);
+			console.log("cam rot: ", camRot);
+			console.log("del rot: ", deltaRot);
+            return camRot._y + deltaRot;
+        }
 
-		return function () {
-
+        return function () {
 			alpha  = THREE.Math.degToRad( this.deviceOrientation.alpha || 0 ); // Z
-			beta   = THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
+            beta   = THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
 			gamma  = THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
-			orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
+            orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
 			// only process non-zero 3-axis data
 			if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
 
 				if ( this.useQuaternions ) {
-
-					deviceQuat = createQuaternion( alpha, beta, gamma, orient );
+					if (usenewcontrols) {
+						deviceQuat = createQuaternion( alphaFromRot( gamma, object, 1.0, turnspeed), beta, gamma, orient );
+					}else{
+						deviceQuat = createQuaternion( alpha, beta, gamma, orient );
+					}
 
 				} else {
 
@@ -440,8 +461,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 	}();
 
-	this.update = function () {
-		this.updateDeviceMove();
+	this.update = function (delta) {
+		this.updateDeviceMove(delta);
 
 		if ( appState !== CONTROLLER_STATE.AUTO ) {
 			this.updateManualMove();

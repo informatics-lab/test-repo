@@ -95,7 +95,7 @@ var VIEW3D = {
     }
     VIEW3D.camera.position.y = Math.max(VIEW3D.camera.position.y, 2)
     this.camera_position = VIEW3D.camera.position;
-    this.controls.update();
+    this.controls.update(this.delta);
     this.display();
     if (connectedToRoom && isMobile) {
       socket.emit('send camera', {
