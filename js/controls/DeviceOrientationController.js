@@ -422,7 +422,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 			// console.log("del rot: ", deltaRot);
 			// console.log("ts: ", turnspeed);
 			// console.log("delta: ", delta);
-            return camRot._z + deltaRot;
+            return camRot._y + deltaRot;
         }
 
         return function (delta) {
@@ -441,8 +441,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 				if ( this.useQuaternions ) {
 					if (usenewcontrols) {
 						console.log("here");
-						deviceQuat = createQuaternion( alpha, beta, camMoveFromRot( alpha, object, delta, turnspeed), orient );
-						// deviceQuat = createQuaternion( gamma, beta, gamma, orient );
+						// deviceQuat = createQuaternion( alpha, beta, camMoveFromRot( alpha, object, delta, turnspeed), orient );
+						deviceQuat = createQuaternion( gamma, beta, 0.0, orient );
 					}else{
 						deviceQuat = createQuaternion( alpha, beta, gamma, orient );
 					}
