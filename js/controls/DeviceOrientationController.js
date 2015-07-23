@@ -432,7 +432,7 @@ var DeviceOrientationController = function ( object, domElement ) {
             orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
 			// only process non-zero 3-axis data
-			// camrot = object.getWorldRotation();
+			// camrot = new THREE.Vector3(-0.9944211011987835, 0.05444497370105304, 0.08352534129539567);
 			// alpha  = camrot._x;
 			// beta   = camrot._y;
 			// gamma  = camrot._z;
