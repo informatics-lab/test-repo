@@ -12,7 +12,7 @@
 **/
 
 var usenewcontrols = false;
-var turnspeed = 1.0;
+var turnspeed = 0.0002;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -432,10 +432,10 @@ var DeviceOrientationController = function ( object, domElement ) {
             orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
 			// only process non-zero 3-axis data
-			// camrot = object.getWorldRotation();
-			// alpha = camrot._x;
-			// beta = camrot._y;
-			// gamma = camrot._z;
+			camrot = object.getWorldRotation();
+			alpha  = camrot._x;
+			beta   = camrot._y;
+			gamma  = camrot._z;
 			if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
 
 				if ( this.useQuaternions ) {
