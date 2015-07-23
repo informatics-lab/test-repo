@@ -422,7 +422,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 			console.log("del rot: ", deltaRot);
 			console.log("ts: ", turnspeed);
 			console.log("delta: ", delta);
-            return camRot._y;// + deltaRot;
+            return 0.0; //camRot._y;// + deltaRot;
         }
 
         return function (delta) {
