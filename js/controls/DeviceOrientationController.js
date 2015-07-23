@@ -12,7 +12,7 @@
 **/
 
 var usenewcontrols = false;
-var turnspeed = 0.000002;
+var turnspeed = 0.0;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -440,8 +440,9 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				if ( this.useQuaternions ) {
 					if (usenewcontrols) {
-						// deviceQuat = createQuaternion( alphaFromRot( gamma, object, delta, turnspeed), beta, gamma, orient );
-						deviceQuat = createQuaternion( gamma, beta, gamma, orient );
+						console.log("here");
+						deviceQuat = createQuaternion( alphaFromRot( gamma, object, delta, turnspeed), beta, gamma, orient );
+						// deviceQuat = createQuaternion( gamma, beta, gamma, orient );
 					}else{
 						deviceQuat = createQuaternion( alpha, beta, gamma, orient );
 					}
