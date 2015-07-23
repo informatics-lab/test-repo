@@ -13,7 +13,6 @@
 
 var usenewcontrols = false;
 var turnspeed = 1.0;
-var delta = 1.0;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -418,19 +417,25 @@ var DeviceOrientationController = function ( object, domElement ) {
 		
 		function alphaFromRot (deviceRotation, camera, delta, turnspeed) {
 			var camRot = camera.getWorldRotation();
-			var deltaRot = - (turnspeed * (deviceRotation || 0) * delta);
+			var deltaRot = turnspeed * (deviceRotation || 0) * delta;
 			console.log("cam rot: ", camRot);
 			console.log("del rot: ", deltaRot);
+			console.log("ts: ", turnspeed);
+			console.log("delta: ", delta);
             return camRot._y + deltaRot;
         }
 
-        return function () {
+        return function (delta) {
 			alpha  = THREE.Math.degToRad( this.deviceOrientation.alpha || 0 ); // Z
             beta   = THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
 			gamma  = THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
             orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
 			// only process non-zero 3-axis data
+			// camrot = object.getWorldRotation();
+			// alpha = camrot._x;
+			// beta = camrot._y;
+			// gamma = camrot._z;
 			if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
 
 				if ( this.useQuaternions ) {
