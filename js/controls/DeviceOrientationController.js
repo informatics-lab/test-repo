@@ -421,7 +421,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 			// console.log("del rot: ", deltaRot);
 			// console.log("ts: ", turnspeed);
 			// console.log("delta: ", delta);
-            return camera.rotateY(deltaRot);
+			camera.rotateY(deltaRot)
+            return camera.rotation._y;
         }
 
         return function (delta) {
@@ -454,7 +455,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				}
 
-				document.getElementById("socket-id").innerHTML = object.rotation._y.toString();//turnspeed * (beta || 0) * delta; //camMoveFromRot( beta, object, delta, turnspeed);
+				document.getElementById("socket-id").innerHTML = //turnspeed * (beta || 0) * delta; //camMoveFromRot( beta, object, delta, turnspeed);
 
 				if ( this.freeze ) return;
 
