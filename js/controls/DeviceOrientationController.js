@@ -455,7 +455,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				}
 
-				document.getElementById("socket-id").innerHTML = turnspeed * (deviceRotation || 0) * delta; //camMoveFromRot( beta, object, delta, turnspeed);
+				document.getElementById("socket-id").innerHTML = turnspeed * (beta || 0) * delta; //camMoveFromRot( beta, object, delta, turnspeed);
 
 				if ( this.freeze ) return;
 
