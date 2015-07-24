@@ -441,7 +441,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 				if ( this.useQuaternions ) {
 					if (usenewcontrols) {
 						console.log("here");
-						deviceQuat = createQuaternion( alpha, beta, camMoveFromRot( alpha, object, delta, turnspeed), orient );
+						deviceQuat = createQuaternion( camMoveFromRot( beta, object, delta, turnspeed), beta, gamma, orient );
 						// deviceQuat = createQuaternion( gamma, beta, 0.0, orient );
 					}else{
 						deviceQuat = createQuaternion( alpha, beta, gamma, orient );
