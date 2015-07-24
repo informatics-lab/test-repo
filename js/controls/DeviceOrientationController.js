@@ -455,6 +455,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				}
 
+				document.getElementById("socket-id").innerHTML = camMoveFromRot( beta, object, delta, turnspeed);
+
 				if ( this.freeze ) return;
 
 				//this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
