@@ -416,13 +416,12 @@ var DeviceOrientationController = function ( object, domElement ) {
 		var deviceMatrix;
 		
 		function camMoveFromRot (deviceRotation, camera, delta, turnspeed) {
-			var camRot = camera.getWorldRotation();
 			var deltaRot = turnspeed * (deviceRotation || 0) * delta;
 			// console.log("cam rot: ", camRot);
 			// console.log("del rot: ", deltaRot);
 			// console.log("ts: ", turnspeed);
 			// console.log("delta: ", delta);
-            return camRot._y + deltaRot;
+            return camera.rotateY(deltaRot);
         }
 
         return function (delta) {
