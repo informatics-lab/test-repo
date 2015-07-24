@@ -12,7 +12,7 @@
 **/
 
 var usenewcontrols = false;
-var turnspeed = 1.0;
+var turnspeed = 0.01;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
