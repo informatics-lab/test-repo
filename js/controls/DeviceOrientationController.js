@@ -12,7 +12,7 @@
 **/
 
 var usenewcontrols = false;
-var turnspeed = 0.001;
+var turnspeed = 0.01;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -431,9 +431,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 			gamma  = THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
             orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
-            temp = camMoveFromRot( beta, object, delta, turnspeed);
-            document.getElementById("socket-id").innerHTML = temp.toString();
-
 			// only process non-zero 3-axis data
 			// camrot = new THREE.Vector3(-0.9944211011987835, 0.05444497370105304, 0.08352534129539567);
 			// alpha  = camrot._x;
@@ -458,6 +455,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				}
 
+				document.getElementById("socket-id").innerHTML = turnspeed * (deviceRotation || 0) * delta; //camMoveFromRot( beta, object, delta, turnspeed);
 
 				if ( this.freeze ) return;
 
