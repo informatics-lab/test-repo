@@ -12,7 +12,7 @@
 **/
 
 var usenewcontrols = false;
-var turnspeed = 0.0001;
+var turnspeed = 0.001;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -455,7 +455,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				}
 
-				document.getElementById("socket-id").innerHTML = camMoveFromRot( beta, object, delta, turnspeed);
+				document.getElementById("socket-id").innerHTML = camMoveFromRot( beta, object, delta, turnspeed).toString();
 
 				if ( this.freeze ) return;
 
