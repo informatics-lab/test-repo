@@ -13,6 +13,7 @@
 
 var usenewcontrols = false;
 var turnspeed = 0.01;
+var glasty = 1.0;
 
 function togglecontrols(){
 	usenewcontrols = !usenewcontrols;
@@ -417,11 +418,11 @@ var DeviceOrientationController = function ( object, domElement ) {
 		
 		function camMoveFromRot (deviceRotation, camera, delta, turnspeed) {
 			var deltaRot = turnspeed * (deviceRotation || 0) * delta;
-			// console.log("cam rot: ", camRot);
-			// console.log("del rot: ", deltaRot);
-			// console.log("ts: ", turnspeed);
-			// console.log("delta: ", delta);
+			var a = camera.rotation._y;
 			camera.rotateY(deltaRot);
+			var b = camera.rotation._y;
+			document.getElementById("socket-id").innerHTML = a.toString() + " : " + b.toString(); 
+
             return camera.rotation._y;
         }
 
@@ -461,6 +462,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				//this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
 				this.object.quaternion.copy( deviceQuat );
+				glasty = this.object.rotation._y;
 
 			}
 
