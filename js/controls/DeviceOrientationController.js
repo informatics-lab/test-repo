@@ -419,7 +419,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 		function camMoveFromRot (deviceRotation, camera, delta, turnspeed) {
 			var deltaRot = turnspeed * (deviceRotation || 0) * delta;
 			var a = camera.rotation._y;
-			camera.rotateY(deltaRot/3.0);
+			// camera.rotateY(deltaRot);
 			var b = camera.rotation._y;
 			document.getElementById("socket-id").innerHTML = a.toString() + " : " + b.toString(); 
 
